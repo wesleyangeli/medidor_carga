@@ -5,11 +5,10 @@ import { ObjectPropsI } from "@/utils/generateRandomObjects";
  * @returns {ObjectPropsI[]} Array de objetos
  * @returns {[]} Array vazio caso não exista nada no localStorage
  */
-function getArrayFromLocalStorage(): ObjectPropsI[] {
-  const savedArrayAsString = localStorage.getItem('arrayRegisters');
+export function getArrayFromLocalStorage(): ObjectPropsI[] {
+  const savedArrayAsString = localStorage.getItem("arrayRegisters");
   return savedArrayAsString ? JSON.parse(savedArrayAsString) : [];
 }
-
 
 /**
  * @description Função para salvar o array atualizado no localStorage
@@ -19,7 +18,7 @@ function getArrayFromLocalStorage(): ObjectPropsI[] {
  */
 function saveArrayToLocalStorage(array: ObjectPropsI[]) {
   const updatedArrayAsString = JSON.stringify(array);
-  localStorage.setItem('arrayRegisters', updatedArrayAsString);
+  localStorage.setItem("arrayRegisters", updatedArrayAsString);
 }
 
 /**
@@ -44,7 +43,7 @@ export function createObject(newObject: ObjectPropsI) {
  */
 export function editObjectByKey(key: string, editedObject: ObjectPropsI) {
   const currentArray = getArrayFromLocalStorage();
-  const indexToEdit = currentArray.findIndex(item => item.key === key);
+  const indexToEdit = currentArray.findIndex((item) => item.key === key);
 
   if (indexToEdit !== -1) {
     currentArray[indexToEdit] = editedObject;
@@ -61,7 +60,7 @@ export function editObjectByKey(key: string, editedObject: ObjectPropsI) {
  */
 export function deleteObjectByKey(key: string) {
   const currentArray = getArrayFromLocalStorage();
-  const indexToDelete = currentArray.findIndex(item => item.key === key);
+  const indexToDelete = currentArray.findIndex((item) => item.key === key);
 
   if (indexToDelete !== -1) {
     currentArray.splice(indexToDelete, 1);

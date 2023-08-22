@@ -1,4 +1,6 @@
+"use client";
 import { ObjectPropsI } from "@/utils/generateRandomObjects";
+import React from "react";
 
 /**
  * @description Função para obter o array do localStorage
@@ -33,7 +35,11 @@ export function createObject(newObject: ObjectPropsI) {
   saveArrayToLocalStorage(currentArray);
 }
 
-// Função para editar um objeto no array pela chave
+function getObjectByKey(key: string): ObjectPropsI | undefined {
+  const currentArray = getArrayFromLocalStorage();
+  return currentArray.find((item) => item.key === key);
+}
+
 /**
  * @description Função para editar um objeto no array pela chave
  * @param key Chave do objeto a ser editado
@@ -67,3 +73,14 @@ export function deleteObjectByKey(key: string) {
     saveArrayToLocalStorage(currentArray);
   }
 }
+
+const Storage = () => {
+  const [data, setData] = React.useState([]);
+
+  function handleGetLocalStorage() {
+    const item = get;
+  }
+  return <></>;
+};
+
+export default Storage;

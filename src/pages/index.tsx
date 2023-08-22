@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Layout, Row, Col, Button } from "antd";
 import { v4 as uuid4 } from "uuid";
@@ -9,7 +10,7 @@ import FormCreateMadeira from "@/components/form/FormCreateMadeira";
 const { Header, Footer } = Layout;
 
 const Home: React.FC = () => {
-  const [arrayOfObjects, setArrayOfObjects] = React.useState(arrayRegisters);
+  const [arrayOfObjects, setArrayOfObjects] = React.useState([]);
   const [isOpenCreateMadeira, setIsOpenCreateMadeira] = React.useState(false);
 
   return (

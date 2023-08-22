@@ -1,4 +1,13 @@
-import { Button, Col, Drawer, Form, InputNumber, Row, Space } from "antd";
+import {
+  Button,
+  Col,
+  Drawer,
+  Form,
+  InputNumber,
+  Row,
+  Space,
+  Input,
+} from "antd";
 import React, { Dispatch, SetStateAction } from "react";
 
 interface FormCreateMadeiraPropsI {
@@ -33,6 +42,11 @@ function FormCreateMadeira({
     >
       <Form form={form} layout="vertical" requiredMark={false}>
         <Row gutter={16}>
+          <Col span={24}>
+            <Form.Item name={"descricao"} label="Descrição">
+              <Input placeholder="Descrição" />
+            </Form.Item>
+          </Col>
           <Col span={8}>
             <Form.Item
               name="largura"

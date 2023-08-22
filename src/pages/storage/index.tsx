@@ -8,7 +8,7 @@ import React from "react";
  * @returns {[]} Array vazio caso não exista nada no localStorage
  */
 export function getArrayFromLocalStorage(): ObjectPropsI[] {
-  const savedArrayAsString = localStorage.getItem("arrayRegisters");
+  const savedArrayAsString = window.localStorage.getItem("arrayRegisters");
   return savedArrayAsString ? JSON.parse(savedArrayAsString) : [];
 }
 
@@ -20,7 +20,16 @@ export function getArrayFromLocalStorage(): ObjectPropsI[] {
  */
 function saveArrayToLocalStorage(array: ObjectPropsI[]) {
   const updatedArrayAsString = JSON.stringify(array);
-  localStorage.setItem("arrayRegisters", updatedArrayAsString);
+  windows.localStorage.setItem("arrayRegisters", updatedArrayAsString);
+}
+
+export function initializeArrayInLocalStorage() {
+  const currentArray = getArrayFromLocalStorage();
+  if (currentArray.length === 0) {
+    // Verifica se o array já está vazio
+    const initialArray: ObjectPropsI[] = []; // Cria um array vazio
+    saveArrayToLocalStorage(initialArray); // Salva o array vazio no localStorage
+  }
 }
 
 /**
@@ -35,7 +44,13 @@ export function createObject(newObject: ObjectPropsI) {
   saveArrayToLocalStorage(currentArray);
 }
 
-function getObjectByKey(key: string): ObjectPropsI | undefined {
+/**
+ * @description Função para obter um objeto do array pela chave
+ * @param key Chave do objeto a ser obtido
+ * @returns {ObjectPropsI | undefined} Objeto encontrado ou undefined caso não encontre
+ * @example getObjectByKey("new-key");
+ */
+export function getObjectByKey(key: string): ObjectPropsI | undefined {
   const currentArray = getArrayFromLocalStorage();
   return currentArray.find((item) => item.key === key);
 }
@@ -73,14 +88,3 @@ export function deleteObjectByKey(key: string) {
     saveArrayToLocalStorage(currentArray);
   }
 }
-
-const Storage = () => {
-  const [data, setData] = React.useState([]);
-
-  function handleGetLocalStorage() {
-    const item = get;
-  }
-  return <></>;
-};
-
-export default Storage;
